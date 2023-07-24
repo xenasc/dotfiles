@@ -1,0 +1,41 @@
+# End-user environment
+alias sudo='sudo -E'
+alias ls='LC_COLLATE=C ls -h --group-directories-first'
+alias vi='nvim'
+alias vim='nvim'
+alias dig='drill'
+alias axel='axel -a'
+alias df='df -H'
+alias rm='rm -I'
+alias lsblk='lsblk -o "NAME,FSTYPE,SIZE,FSUSE%,UUID,KNAME,PATH,MOUNTPOINT"'
+
+# Colour support
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias diff='colordiff'
+alias ip='ip -c'
+
+# Tooling specific setup shortcuts
+alias shared-folder='/usr/bin/vmhgfs-fuse .host:/Shared ~/pub/ -o subtype=vmhgfs-fuse,allow_other'
+alias neo4j-set-password='sudo /usr/share/neo4j/bin/neo4j-admin set-initial-password Password'
+#alias bloodhound='bloodhound --force-device-scale-factor=1.5'
+
+alias docker-update='docker images --format "{{.Repository}}:{{.Tag}}" | grep --invert-match "<none>" | xargs -L1 docker pull'
+alias docker-remove-untagged='docker images --format "{{.ID}}:{{.Tag}}" | grep "<none>" | cut -d : -f 1 | xargs -L1 docker image rm'
+alias docker-reset='docker container prune -f && docker builder prune --all -f && docker image prune --all -f'
+
+alias git-update="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull origin master \;"
+alias git-update-threaded='find . -maxdepth 1 -mindepth 1 -type d | xargs -I {} -P 5 sh -c "(cd {} && git pull origin master)" \;'
+
+alias condense='grep -Erv "(^#|^$)"'
+alias sync-watch='watch -n 1 grep Dirty /proc/meminfo'
+alias whatismyip='http ifconfig.co/json'
+alias deadbeef='while [ TRUE ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "de ad \| be ef"'

@@ -1,0 +1,43 @@
+# Prevent execution if the shell isn't interactive
+[[ $- != *i* ]] && return
+
+source $HOME/.config/bash/environment
+source $HOME/.config/bash/aliases
+source $HOME/.config/bash/functions
+
+# Automatically update window size
+shopt -s checkwinsize
+
+# Enable command autocompletion
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+# Enhance autocompletion
+bind "set mark-symlinked-directories on"
+bind "set completion-ignore-case on"
+bind "set completion-map-case on"
+# Enable extended pattern matching features
+#shopt -s globstar
+
+# Configure bash history
+HISTFILE="$XDG_CACHE_HOME/bash.history"
+HISTSIZE=10000
+HISTFILESIZE=20000
+# Ignore these commands in history
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:cd:tmux:htop"
+# Save multi-line commands as one command
+shopt -s cmdhist
+# Don't record duplicate or whitespace-starting commands
+HISTCONTROL=ignoreboth:erasedups
+# Append to history, don't overwrite it
+shopt -s histappend
+
+# Enable git prompt
+source /etc/bash_completion.d/git-prompt
+export GIT_PS1_SHOWDIRTYSTATE=1
+# Configure prompt
+PS1='\033[1m\033[31m\u\033[0m@\033[1m\033[33m\h\033[0m \t\033[0m \033[1m\w\033[0m \033[3m$(__git_ps1 "(%s)")\033[0m\n\$ '

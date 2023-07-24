@@ -1,0 +1,22 @@
+function dict() {
+    curl dict://dict.org/d:"$@"
+}
+
+magnet-info() {
+    hash=$(echo "$1" | grep -oP "(?<=btih:).*?(?=&)")
+    echo "Magnet Hash: $hash"
+    aria2c --bt-metadata-only=true --bt-save-metadata=true -q "$1"
+    aria2c "$hash.torrent" -S
+}
+
+wttr()
+{
+    local request="wttr.in/${1-Melbourne}"
+    #[ "$(tput cols)" -lt 125 ] && request+='?n'
+    request+='?2mMFQ'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
+
+function ripe-ip-stat() {
+    curl -s https://stat.ripe.net/data/geoloc/data.json?resource="$@"
+}

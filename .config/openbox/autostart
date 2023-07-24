@@ -1,0 +1,9 @@
+xcompmgr &
+#nm-applet &
+dunst &
+autocutsel -f -s PRIMARY &
+autocutsel -f -s CLIPBOARD &
+autocutsel -f -s SECONDARY &
+tint2 &
+vmware-user-suid-wrapper
+xset r rate 250 25

@@ -1,0 +1,15 @@
+URxvt.font: xft:Input Mono Compressed:size=14
+URxvt.letterSpace: -1
+URxvt.geometry: 150x40
+URxvt.loginShell: true
+URxvt.internalBorder: 4
+URxvt.lineSpace: 0
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt*scrollBar: false
+URxvt.perl-ext-common: font-size
+
+URxvt*foreground: #FEFEFE
+URxvt*background: #101010
+URxvt.color4: #6181B8
+URxvt.color12: #9AB9F3
