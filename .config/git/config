@@ -3,5 +3,12 @@
 	email = 105551103+xenasc@users.noreply.github.com
 [core]
 	editor = nvim
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+	tool = nvimdiff
 [pull]
 	ff = only
+[push]
+	default = simple

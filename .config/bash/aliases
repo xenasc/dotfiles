@@ -29,6 +29,7 @@ alias shared-folder='/usr/bin/vmhgfs-fuse .host:/Shared ~/pub/ -o subtype=vmhgfs
 alias neo4j-set-password='sudo /usr/share/neo4j/bin/neo4j-admin set-initial-password Password'
 #alias bloodhound='bloodhound --force-device-scale-factor=1.5'
 
+alias docker='docker --config ~/.config/docker/'
 alias docker-update='docker images --format "{{.Repository}}:{{.Tag}}" | grep --invert-match "<none>" | xargs -L1 docker pull'
 alias docker-remove-untagged='docker images --format "{{.ID}}:{{.Tag}}" | grep "<none>" | cut -d : -f 1 | xargs -L1 docker image rm'
 alias docker-reset='docker container prune -f && docker builder prune --all -f && docker image prune --all -f'
