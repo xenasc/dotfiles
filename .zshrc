@@ -39,6 +39,8 @@ setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 # Do not enter command lines into the history list if they are duplicates
 setopt HIST_IGNORE_DUPS
+# Do not enter command lines into the history list if they are duplicates of the previous event.
+setopt HIST_IGNORE_ALL_DUPS
 # Exclude duplicates from history when using 'fc -l' and 'history'
 setopt HIST_FIND_NO_DUPS
 # Remove superfluous blanks from each command line being added to the history list
